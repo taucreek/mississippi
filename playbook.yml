@@ -1,0 +1,34 @@
+- hosts: localhost
+  vars:
+    - base_box_dir: "base-box"
+    - base_box: "centos-7.5"
+    - base_box_version: "201806.08.0"
+    - base_box_provider: "virtualbox"
+
+  tasks:
+    - name: Remove existing directories
+      file:
+        path: "{{ item }}"
+        state: absent
+        mode: 0755
+      with_items:
+        - "{{ base_box_dir }}"
+        - "builds"
+
+    - name: Create box directory
+      file:
+        path: "{{ base_box_dir }}"
+        state: directory
+        mode: 0755
+
+    - name: Download vagrant box
+      get_url:
+        url: "https://app.vagrantup.com/bento/boxes/{{ base_box }}/versions/{{ base_box_version }}/providers/{{ base_box_provider }}.box"
+        dest: "{{ base_box_dir }}/{{ base_box_provider }}.box"
+        mode: 0644
+
+    - name: Extract box
+      command: tar -zxvf {{ base_box_dir }}/{{ base_box_provider }}.box -C {{ base_box_dir }}/
+
+    - name: Run packer build
+      command: packer build -var-file=vagrant-cloud-token.json mississippi-x86_64.json

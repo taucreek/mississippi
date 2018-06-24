@@ -1,0 +1,43 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-ovf",
+      "source_path": "base-box/box.ovf",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "shutdown_command": "echo 'packer' | sudo -S shutdown -P now"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo yum install -y epel-release",
+        "sudo yum install -y ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "local.yml",
+      "galaxy_file": "requirements.yml"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "output": "builds/{{user `box_basename`}}.{{.Provider}}.box",
+        "type": "vagrant"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "taucreek/mississippi",
+        "access_token": "{{user `vagrant_cloud_token`}}",
+        "version": "{{user `vagrant_cloud_version`}}"
+      }
+    ]
+  ],
+  "variables": {
+    "box_basename": "mississippi",
+    "vagrant_cloud_version": "0.0.2"
+  }
+}

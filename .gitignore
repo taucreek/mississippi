@@ -1,0 +1,14 @@
+### Ansible
+*.retry
+### Vagrant
+.vagrant/
+### IntelliJ
+*.iml
+.idea/
+
+### local token file
+vagrant-cloud-token.json
+### packer build
+base-box/
+builds/
+packer_cache/
