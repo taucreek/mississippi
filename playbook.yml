@@ -2,7 +2,7 @@
   vars:
     - base_box_dir: "base-box"
     - base_box: "centos-7.5"
-    - base_box_version: "201806.08.0"
+    - base_box_version: "201808.24.0"
     - base_box_provider: "virtualbox"
 
   tasks:
