@@ -1,7 +1,7 @@
-- src: bt5e.docker-ce
-  version: 18.06.1.ce
+- src: bt5e.docker_ce
+  version: v18.9.6
 
-- src: bt5e.docker-compose
-  version: 1.23.1
+- src: bt5e.docker_compose
+  version: v1.24.0
 
 - src: bt5e.docker-non-root-user
