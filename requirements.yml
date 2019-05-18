@@ -5,3 +5,8 @@
   version: v1.24.0
 
 - src: bt5e.docker-non-root-user
+
+- src: bt5e.kubectl
+
+- src: bt5e.k8s_helm
+  version: v2.14.0

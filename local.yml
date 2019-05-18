@@ -4,6 +4,8 @@
     - bt5e.docker_ce
     - bt5e.docker_compose
     - { role: bt5e.docker-non-root-user, non_root_docker_users: vagrant }
+    - bt5e.kubectl
+    - bt5e.k8s_helm
 
   tasks:
     - name: Install packages via yum

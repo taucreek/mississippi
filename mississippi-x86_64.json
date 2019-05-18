@@ -38,6 +38,6 @@
   ],
   "variables": {
     "box_basename": "mississippi",
-    "vagrant_cloud_version": "0.0.3"
+    "vagrant_cloud_version": "0.1.0"
   }
 }
