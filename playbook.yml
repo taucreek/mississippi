@@ -1,8 +1,9 @@
 - hosts: localhost
   vars:
     - base_box_dir: "base-box"
-    - base_box: "centos-7.6"
-    - base_box_version: "201812.27.0"
+    - base_box_group: "bento"
+    - base_box: "centos-7.7"
+    - base_box_version: "202004.15.0"
     - base_box_provider: "virtualbox"
 
   tasks:
@@ -23,7 +24,7 @@
 
     - name: Download vagrant box
       get_url:
-        url: "https://app.vagrantup.com/bento/boxes/{{ base_box }}/versions/{{ base_box_version }}/providers/{{ base_box_provider }}.box"
+        url: "https://app.vagrantup.com/{{ base_box_group }}/boxes/{{ base_box }}/versions/{{ base_box_version }}/providers/{{ base_box_provider }}.box"
         dest: "{{ base_box_dir }}/{{ base_box_provider }}.box"
         mode: 0644
 

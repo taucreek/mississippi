@@ -9,4 +9,4 @@
 - src: bt5e.kubectl
 
 - src: bt5e.k8s_helm
-  version: v2.14.0
+  version: v3.2.0
